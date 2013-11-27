@@ -1,0 +1,42 @@
+/* All sizes need to be in percentage, since screen can be resized */
+#slideshow { 
+  height: 100%;
+  position: absolute;
+  /* master font control in resizeAll() */
+}
+body {
+  /* background-image: url(images/background.jpg); */
+  background-color: #EEE;
+  background-size: 100% 100%;
+  font-family: "Droid Sans", sans-serif
+}
+html, body { 
+  margin: 0px; 
+  height: 100%;
+}
+h1 {
+  margin: 0px;
+  text-align: center;
+  font-weight: normal;
+  padding-top: 3%
+}
+#showshow > div { height: 100%; padding: 0 3%}
+
+#slideshow > div object.vfullslide, #slideshow > div img.vfullslide {
+  height: 80%; margin: 0 auto; display: block
+}
+#slideshow > div object.hfullslide, #slideshow > div img.hfullslide {
+  width: 80%; display: block; margin: 5% auto
+}
+.code { font-family: monospace }
+.slideNumber { 
+font-size: 60%; 
+position: absolute; bottom: 0%; left: 0%;
+text-align: right;
+width: 2.5%;
+height: 3%;
+padding: 1%;
+color: #EEE;
+background-color: black;
+}
+pre { font-family: Ubuntu }
