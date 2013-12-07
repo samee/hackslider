@@ -18,7 +18,8 @@ h1 {
   margin: 0px;
   text-align: center;
   font-weight: normal;
-  padding-top: 3%
+  padding-top: 3%;
+  padding-bottom: 2%
 }
 #showshow > div { height: 100%; padding: 0 3%}
 
@@ -28,7 +29,6 @@ h1 {
 #slideshow > div object.hfullslide, #slideshow > div img.hfullslide {
   width: 80%; display: block; margin: 5% auto
 }
-.code { font-family: monospace }
 .slideNumber { 
 font-size: 60%; 
 position: absolute; bottom: 0%; left: 0%;
@@ -39,4 +39,4 @@ padding: 1%;
 color: #EEE;
 background-color: black;
 }
-pre { font-family: Ubuntu }
+pre, code { font-family:  monospace; font-size: .8em }

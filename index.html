@@ -4,6 +4,12 @@
     <script src="jquery.js" type="text/javascript"></script>
     <script src="hackslider.js" type="text/javascript"></script>
     <link rel="stylesheet" href="hackslider.css" type="text/css"/>
+    <style> 
+      .todo { color: green; display: none; }
+      li > p { font-size: .85em; margin: 0 0 0 2em }
+      li { margin-bottom: .5em }
+      li li { margin-bottom: 0 }
+    </style>
   </head>
 
   <body>
@@ -13,455 +19,141 @@
     <!-- begin style-div pairs for each slide -->
     <style>
       #titleSlide { font-size: 70% }
-      #titleSlide h1 {
-        padding-top: 17%;
-      }
-      #titleSlide h1 .titlePrep { font-size: 80%; }
-      .author.left  { text-align: center; float: left ; padding-left: 18%}
-      .author.right { text-align: center; float: right; padding-right: 18%}
-      .author { width: 30%; color: #902f00; margin-top: 5%; font-size: 1.1em}
-      .author .email { display: block; font-style: italic }
+      #titleSlide h1 { padding-top: 17%; font-weight: bold }
+      #titleSlide h2 { text-align:center; font-weight: normal }
+      #nontitle { width:100%; padding: 7% 0; text-align: center }
     </style>
-    <div class="slide hideSlideNumber" id="titleSlide">
-      <h1>
-          Circuit Structures for
-        Improving Efficiency of Security and Privacy Tools
-      </h1>
-      <div class="author left">
-        Samee Zahur <span class="email">samee@virginia.edu</span>
-      </div>
-      <div class="author right">
-        David Evans <span class="email">evans@virginia.edu</span>
-      </div>
-      <div class="author" style="width:100%; padding-top:15%; text-align: center">
-        <span style="font-size:larger">University of Virginia</span>
-      </div>
-<div style="width:100%; padding: 7% 0; text-align: center">
-These slides available at <span style="color:#008">MightBeEvil.org/circuits</span>
-</div>
-    </div>
-
-    <script type="text/javascript">
-    var introAppAnim = keyFrameList ([
-          { "#introApp1"      : { opacity: 0, width: 0, left: "64%", top: "29%" },
-            "#introApp2"      : { opacity: 0, width: 0, left: "84%", top: "34%" },
-            "#introApp3"      : { opacity: 0, width: 0, left: "64%", top: "66%" },
-            "#introApp4"      : { opacity: 0, width: 0, left: "84%", top: "71%" },
-            ".applabel"       : { opacity: 0 },
-            "#introArrow"     : { opacity: 1 }
-          },
-          /*
-          { "#introApp1"      : { opacity: 1, width: "18%", left:  "6%", top: "60%" },
-            "#introApp2"      : { opacity: 1, width: "18%", left: "29%", top: "60%" },
-            "#introApp3"      : { opacity: 1, width: "18%", left: "52%", top: "60%" },
-            "#introApp4"      : { opacity: 1, width: "18%", left: "76%", top: "60%" },
-            ".applabel"       : { opacity: 1 }
-          },
-          { "#introApp1"      : { width: "20%", left:  "5%", top: "58%" },
-            "#introApp2"      : { opacity: 0.4 },
-            "#introApp3"      : { width: "20%", left: "51%", top: "58%" },
-            "#introApp4"      : { opacity: 0.4 },
-          }
-          */
-          { "#introApp1" : { opacity: 1, width: "16%", left: "56%", top: "21%" },
-            "#introApp2" : { opacity: 1, width: "16%", left: "76%", top: "26%" },
-            "#introApp3" : { opacity: 1, width: "16%", left: "56%", top: "58%" },
-            "#introApp4" : { opacity: 1, width: "16%", left: "76%", top: "63%" },
-            ".applabel"  : { opacity: 1 },
-            "#introArrow"     : { opacity: 1 }
-          },
-          { "#introApp2, #introApp4" : { opacity: 0.4 },
-            "#introApp1, #introApp3" : { width: "+=2%", left: "-=1%", top: "-=1%", }
-          }
-    ]);
-    introAppAnim.oldProceed = introAppAnim.proceed;
-    introAppAnim.proceed = function() {
-      if(this.curFrame!=0) return this.oldProceed();
-      var kf = this.keyframes[1];
-      var f = function(x) {
-        return function() {$("#introApp"+x).animate(kf["#introApp"+x]);};
-      };
-      for(var i=1;i<=4;++i) setTimeout(f(i),(i-1)*50);
-      $(".applabel").animate(kf[".applabel"]);
-      this.curFrame++;
-    }
-    slideAnims.introApps = introAppAnim;
-    </script>
-    <style>
-      /*
-      div.introblock {
-        position: relative;
-        height: 100%;
-        top: 10%;
-        float: left;
-        width: 10%;
-      }
-      div.introblock img { height: 50%; }
-      */
-      /*
-      .introApp { position: absolute; top: 60%; width: 18% }
-      #introApp1 { left:  6% }
-      #introApp2 { left: 29% }
-      #introApp3 { left: 52% }
-      #introApp4 { left: 76% }
-      */
-      .introApp { position: absolute; width: 18% }
-      .applabel { position: absolute; text-align: center; font-size: 80%; width: 25%;}
-    </style>
-    <div class="slide" id="introApps">
-      <h1>Introduction</h1>
-        <!-- put the whole thing in a single SVG if positioning this is too much trouble -->
-        <!--
-        <div class="introblock">
-          <img src="images/code.svg" type="image/svg+xml"/>
-          <div>Program Code</div>
-        </div> 
-        <div class="introblock" style="top: 15%; width: 10%">
-          <img src="images/rt_arrow.svg" style="width:100%" type="image/svg+xml"/>
-        </div>
-        <div class="introblock">
-          <img src="images/ckt.svg" type="image/svg+xml" /><br/>
-          <div>Logic Circuit</div>
-        </div>
-        -->
-      <img src="images/introApps.svg" style="position: absolute; width: 35%; top: 37%; left: 5%"/>
-      <img src="images/multiArrow.svg" style="position: absolute; width: 10%; top: 40%; left: 43%" id="introArrow"/>
-      <img src="images/app1.png" id="introApp1" class="introApp" style="left:55%;top:20%"/>
-      <img src="images/app2.svg" id="introApp2" class="introApp" style="left:75%;top:25%"/>
-      <img src="images/app3.png" id="introApp3" class="introApp" style="left:55%;top:57%"/>
-      <img src="images/app4.svg" id="introApp4" class="introApp" style="left:75%;top:62%"/>
-      <div class="applabel" style="left: 51%; top: 45%">
-        Secure <br/> Computation
-      </div>
-      <div class="applabel" style="left: 72%; top: 50%">
-        Verifiable <br/> Computation
-      </div>
-      <div class="applabel" style="left: 51%; top: 82%">
-        Static Analysis <br/> of Programs
-      </div>
-      <div class="applabel" style="left: 72%; top: 87%">
-        Non-interactive <br/> Zero-knowledge
+    <div class="hideSlideNumber" id="titleSlide">
+      <h1>HackSlider</h1>
+      <h2>Because my browser is enough for slideshows</h2>
+      <div id="nontitle">
+        For the most recent version: 
+        <a href="http://github.com/samee/hackslider">github.com/samee/hackslider</a><br/>
+        Press &#x21e9; / &lt;Page Dn&gt; key to continue
       </div>
     </div>
 
-    <!--
-    <script type="text/javascript">
-    slideAnims.problemArray = keyFrameList ([
-      [
-        {
-          "#probDesc"       : { left: "15%", opacity: 1 },
-          "#probFullCode"   : { left: "20%", opacity: 1 },
-          "#probSingleLine" : { left: "20%", opacity: 0, top: "25%" },
-          "#probDownArrow, #probCircuit" : { opacity: 0 },
-        }, {
-          "#probSingleLine" : { opacity: 1 }
-        }
-      ],
-      { "#probDesc, #probFullCode" : { opacity: 0 },
-        "#probSingleLine" : { left: "35%", top: "10%", opacity: 1 },
-        "#probDownArrow, #probCircuit" : { opacity: 1 }
-      }]);
-    </script>
-    -->
-    <script>
-    slideAnims.problemArray = keyFrameList ([
-    { "#probFullCode" : { opacity: 1 },
-      "#probFullCode2": { opacity: 0 },
-      "#probLower"    : { opacity: 0 }
-    },{
-      "#probFullCode" : { opacity: 0 },
-      "#probFullCode2": { opacity: 1 }
-    },{
-      "#probLower"    : { opacity: 1 }
-    }
-    ]);
-    </script>
-    <div class="slide" id="problemArray">
-      <h1>The Problem</h1>
-      <div id="probDesc" style="position: absolute; left: 15%; top: 17%">Example: computing histogram frequencies</div>
-      <img id="probFullCode" style="position: absolute; top: 25%; left: 33%; width: 30%; opacity: 0" src="images/probFullCode.svg"/>
-      <img id="probFullCode2" style="position: absolute; top: 25%; left: 33%; width: 30%" src="images/probFullCode2.svg"/>
-      <div id="probLower" style="position: absolute; width: 100%; height: 85%; top: 15%" >
-        <img src="images/dn_arrow2.svg" type="image/svg+xml" id="probDownArrow"
-            style="margin: 0 auto; margin-top: 25%; display: block; width: 25%"/>
-        <img class="hfullslide" type="image/svg+xml" src="images/badIncr.svg" id="probCircuit"/>
-      </div>
+    <div>
+      <!-- No need for <style> if you are using default styles -->
+      <h1>Intro</h1>
+      <p class="todo">Insert file transfer graphic here, reduce text</p>
+      Say you prepare your presentation on one computer and then try presenting it on another computer. Things that often go wrong:
+      <ul>
+        <li>They have a different version of office software running</li>
+        <li>The fonts they have are the same, but somehow configured differently</li>
+      </ul>
     </div>
 
-    <div class="slide">
-      <h1>An Easy Case</h1>
-      <div style="text-align:center; margin:5% auto" class="code">
-        for (i=0; i&lt;n; i++) a[i]++;
-      </div>
-      <img src="images/dn_arrow2.svg" type="image/svg+xml" 
-          style="margin: 0 auto; display: block; width: 25%; margin-bottom:5%"/>
-      <img style="display: block; height:40%; margin-left: 32%" type="image/svg+xml" src="images/simpleloop.svg">
+    <div>
+      <h1>Sorry!</h1>
+      HackSlider is probably <em>not</em> the right solution for you. You are better off just generating a PDF file. Works better than just about anything else. PDF, however, doesn't work if you:
+      <ul>
+        <li>Have one or two slides of animation (please don't overuse this)</li>
+        <li>Are expecting to edit the slides a little after you have transferred it to a different machine</li>
+        <li>Simply do not want to install a full office suite. Those things are bloated!</li>
+      </ul>
+      <span class="todo">fix all the line breaks</span>
     </div>
 
-    <style>
-      #pattSlide .vfullfloat { position: absolute; height: 80%; left: 10% }
-      ul.ds { padding: 0% 20% }
-      ul.ds > li:first-child { padding-top: 0 }
-      ul.ds > li { padding: 2% 0 }
-      ul.ds > li > ul > li:first-child { padding-top: 1% }
-      ul.ds > li > ul { font-size: 90% }
-    </style>
-    <script>
-    slideAnims.pattSlide = keyFrameList([{"#patthigh":{opacity: 0}} , {"#patthigh":{opacity:1}}]);
-    </script>
-    <div class="slide" id="pattSlide">
-      <h1>Access Patterns</h1>
-      <img class="vfullfloat" src="images/patterns-highlight.svg" type="image/svg+xml" id="patthigh"//>
-      <img class="vfullfloat" src="images/patterns.svg" type="image/svg+xml"/>
+    <div>
+      <style>
+      </style>
+      <h1>Upshot</h1>
+      All this specially makes sense (assuming you already know html/css) since modern browsers handle these tasks arguably better than office programs: 
+      <ul>
+        <li>The document format is well-supported on multiple browsers 
+          <p>Your slideshow crashes twice per minute on presentation day? Just switch to a different browser</p>
+        </li>
+        <li>Popular browsers are free
+          <p>No need to buy another software</p>
+        </li>
+        <li>Browsers often load faster 
+          <p>Specially if you often have the browser running in background anyway</p>
+        </li>
     </div>
 
-    <script>
-    slideAnims.codeConversion = keyFrameList([
-      { "#convStack, #convArrow"   : {opacity: 0}}, 
-      { "#convStack, #convArrow"   : {opacity: 1}}
-    ]);
-    </script>
-    <div class="slide" id="codeConversion">
-      <h1>Exploiting Locality: Stacks</h1>
-      <pre style="position: absolute; left: 8%; top: 30%">
-if (x!=0) {
-  if (y&gt;0) i++;
-  a[i] = 5;
-}
-</pre>
-      <img id="convArrow" src="images/rt_arrow.svg" style="position: absolute; width: 7%; left: 31%; top: 45% "/>
-      <pre id="convStack" style="position: absolute; left: 40%; top: 35%">
-stk.condPush (x!=0 &amp;&amp; y&gt;0, NULL);
-stk.condChTop (x!=0, 5);
+    <div>
+      <h1>Getting Started</h1>
+      <pre>
+&lt;script src="jquery.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;script src="hackslider.js" type="text/javascript"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="hackslider.css" type="text/css"/&gt;
+...
+&lt;body&gt;
+  &lt;div id="slideshow"&gt;
+      <em>each &lt;div&gt; nested in here 
+      automatically becomes a new slide</em>
+      ...
+  &lt;/div&gt;
+&lt;/body&gt;
       </pre>
-    </div>
-
-    <div class="slide">
-      <h1>Na&iuml;ve Stack</h1>
-      <object class="hfullslide" type="image/svg+xml" data="images/naiveStack.svg"></object>
+      For more examples, look at the HTML source for this page!
+      <div class="todo">Need animation and graph examples</div>
     </div>
 
     <style>
-      #stackAnim > img, #stackAnim > .text {
-        position: absolute;
-        font-size: 70%;
-      }
-      #stackAnim > .text { width: 10% }
-      .stackStep {
-        width: 70%;
-        left: 15%;
-      }
-      #stackArrow1, #stackArrow2 { left: 17%; width: 4% }
-      #stackArrow3 { width: 8% }
+    #features li { margin: .7em 0 }
+    </style>
+    <div id="features">
+      <h1>Built-in Features</h1>
+      <ul>
+        <li>Keyboard navigation</li>
+        <li>Automatic slide numbering (can be hidden)</li>
+        <li>Direct links to any slide with #hashtags</li>
+      </ul>
+    </div>
+
+    <div>
+      <h1>Customization</h1>
+      <ul>
+        <li>Text <span style="color:#a00">color</span>, <span style="font-size:.8em">size</span>, <span style="font-family:monospace;font-style:italic">font</span> changed using CSS
+          <p><code>Text &lt;span style="red"&gt;color&lt;/span&gt; </code></p>
+        </li>
+        <li>Common options are already provied as built-in classes
+          <ul>
+            <li>Hiding page number: <code>class="hideSlideNumber"</code></li>
+            <li>Common slide layouts</li>
+          </ul>
+        </li>
+        <li>Just add your own class if things get tedious
+          <p>Check the source to see how <code>&lt;style&gt;</code> and 
+          <code>&lt;div&gt;</code> can be neatly arranged in pairs for easy editing.
+          </p>
+        </li>
+        <li>Complicated diagrams are just imported as <code>&lt;img&gt;</code>
+          <p>Drawing directly in office suites always felt awkward for me anyway. That's not what they
+          are designed for.</p>
+        </li>
+      </ul>
+      <div class="todo">Insert <code>class="..."</code> examples after this</div>
+    </div>
+
+    <style>
+      #myAnimSlide div { text-align: center }
     </style>
     <script type="text/javascript">
-    slideAnims.stackAnim = keyFrameList ([
-        [
-          { "#stackStep1"     : { top: "15%" },
-            "#stackStep1Copy" : { top: "15%", opacity:1 },
-            "#stackStep2"     : { top: "39%", opacity:0 },
-            "#stackStep2Copy" : { top: "39%", opacity:0 },
-            "#stackStep3"     : { top: "63%", opacity:0 },
-            "#stackStep3Copy" : { top: "63%", opacity:0 },
-            "#stackStep4"     : { top: "80%", opacity:0 },
-            "#stackArrow1" : { top: "28%", opacity: 0 },
-            "#stackArrow2" : { top: "52%", opacity: 0 },
-            "#stackArrow3" : { top: "78%", opacity: 0, left: "30%" },
-            "#text1" : { top: "43.2%", opacity: 0, left: 0},
-            "#text2" : { top: "67.2%", opacity: 0, left: 0},
-            "#text3" : { top: "84.2%", opacity: 0, left: "18%" },
-            "#text4" : { top: "84.2%", opacity: 0, left: "28%" },
-          }, 
-          { "#stackStep1Copy" : { top: "39%"}, __options__: fastSpeed },
-          { "#stackArrow1"    : { opacity:1 }},
-          { "#text1" : { left: "10%", opacity: 1}, __options__: fastSpeed }
-        ],[
-          { "#text1" : { left: "20%", opacity: 0},
-            "#stackStep1Copy" : { opacity:0 },
-            "#stackStep2"     : { opacity:1 },
-            "#stackStep2Copy" : { opacity:1 },
-            __options__: fastSpeed
-          },
-          { "#stackStep2Copy" : { top: "63%" }, __options__: fastSpeed },
-          { "#stackArrow2"    : { opacity:1 }},
-          { "#text2" : { left: "10%", opacity: 1}, __options__: fastSpeed }
-        ],[
-          { "#stackStep2Copy" : { opacity:0 },
-            "#stackStep3"     : { opacity:1 },
-            "#stackStep3Copy" : { opacity:1 },
-            "#text2" : { left: "20%", opacity: 0},
-            __options__: fastSpeed
-          },
-          { "#stackStep3Copy" : { top:"80%" }, __options__:fastSpeed },
-          { "#text3" : { left: "20.5%", opacity: 1 }, 
-            "#text4" : { left: "40.5%", opacity: 1 },
-            __options__:fastSpeed 
-          },
-        ],[
-          { "#stackStep3Copy" : { opacity:0 },
-            "#stackStep4"     : { opacity:1 },
-            "#stackArrow3"    : { opacity:1 },
-            "#text3"          : { left: "23%", opacity:0 },
-            "#text4"          : { left: "53%", opacity:0 },
-          }
-        ]
-    ]);
+    // Register animation keyframes
+    slideAnims.myAnimSlide = keyFrameList ([
+        // CSS selectors on the left, style parameters on the right
+        // These are directly fed into jquery.animate(). See http://api.jquery.com/animate/
+        {"#myAnimSlide img" : { opacity: 0 }},
+        {"#myAnimSlide img" : { opacity: 1 }}
+        ]);
     </script>
-    <div class="slide" id="stackAnim">
-      <h1>Efficient Stack</h1>
-      <img src="images/stackElt2.step1.svg" class="stackStep" id="stackStep1"/>
-      <img src="images/stackElt2.step1.svg" class="stackStep" id="stackStep1Copy"/>
-      <img src="images/stackElt2.step2.svg" class="stackStep" id="stackStep2"/>
-      <img src="images/stackElt2.step2.svg" class="stackStep" id="stackStep2Copy"/>
-      <img src="images/stackElt2.step3.svg" class="stackStep" id="stackStep3"/>
-      <img src="images/stackElt2.step3.svg" class="stackStep" id="stackStep3Copy"/>
-      <img src="images/stackElt2.step4.svg" class="stackStep" id="stackStep4"/>
-      <img src="images/stackElt2.arrow1.svg" id="stackArrow1"/>
-      <img src="images/stackElt2.arrow2.svg" id="stackArrow2"/>
-      <img src="images/stackElt2.arrow3.svg" id="stackArrow3"/>
-      <div id="text1" class="text">3</div>
-      <div id="text2" class="text">9</div>
-      <div id="text3" class="text">9 &nbsp;3 &nbsp;2</div>
-      <div id="text4" class="text">7 &nbsp;5</div>
-      <!-- TODO fallback
-      <object class="vfullslide" type="image/svg+xml" data="images/stackElt2.svg"></object>
-      -->
-    </div>
-
-    <div class="slide">
-      <h1>Efficient Queue</h1>
-      <img src="images/queueElt2.svg" class="hfullslide"/>
-    </div>
-
-    <script type="text/javascript">
-      slideAnims.localitySummary = keyFrameList([
-            {"#locSumFull":{opacity:0}},
-            {"#locSumFull":{opacity:1}}
-          ]);
-    </script>
-    <style>
-      #localitySummary img { position: absolute; top: 20%; left: 10%; width:80% }
-    </style>
-    <div class="slide" id="localitySummary">
-      <h1>Locality in General</h1>
-      <img id="locSumHalf" src="images/localChange-pre.svg"/>
-      <img id="locSumFull" src="images/localChange.svg"/>
-    </div>
-
-    <style>
-      #assocMapSlide img { position: absolute }
-      #assocMapCode { top: 19%; right: 71%; height: 40% }
-      #assocMapStage1 { top: 18%; left: 30%; width: 55% }
-      #assocMapStage2 { top: 53%; left: 39%; width: 43% }
-      #assocMapStage3 { top: 68%; left: 37.5%; width: 46% }
-    </style>
-    <script>
-      slideAnims.assocMapSlide = keyFrameList ([
-      { "#assocMapCode"  : { opacity: 1 },
-        "#assocMapStage1": { opacity: 0 },
-        "#assocMapStage2": { opacity: 0 },
-        "#assocMapStage3": { opacity: 0 }
-      },
-      { "#assocMapStage1": { opacity: 1 }},
-      { "#assocMapStage2": { opacity: 1 }},
-      { "#assocMapStage3": { opacity: 1 }},
-      ]);
-    </script>
-    <div class="slide" id="assocMapSlide">
-      <h1>Non-local Batched Access</h1>
-      <img src="images/assocMapCode.svg"   id="assocMapCode"/>
-      <img src="images/assocMapStage1.svg" id="assocMapStage1"/>
-      <img src="images/assocMapStage2.svg" id="assocMapStage2"/>
-      <img src="images/assocMapStage3.svg" id="assocMapStage3"/>
-    </div>
-
-    <div class="slide hideSlideNumber">
-      <h1 style="top:20%;position:absolute;left:25%">Implementation <span style="font-size:80%"><br/>&amp;<br/></span>Evaluation</h1>
-    </div>
-    <div class="slide">
-      <h1>Implementation</h1>
-      <object class="hfullsize" style="width:95%; margin: 0 auto" type="image/svg+xml" data="images/system2.svg"></object>
-    </div>
-
-    <script>
-      slideAnims.stackSize = keyFrameList([
-        {"#stackSize > div.popup" : { opacity: 0 }},
-        {"#stackSize > div.popup" : { opacity: 1 }}
-      ]);
-    </script>
-    <style>
-      #stackSize > div.popup {
-        position: absolute;
-        font-family: serif;
-        font-size: 70%;
-        border: 2px solid #802;
-        background-color: #FDF;
-        padding: .5%;
-      }
-    </style>
-    <div class="slide" id="stackSize">
-      <img src="images/stackSize2.svg" height="90%" style="position: absolute; top: 0%; left: 5%"/>
-      <div class="popup" style="left: 84%; top: 17%">~ &Theta;(<i>n</i>)</div>
-      <div class="popup" style="left: 84%; top: 65%">~ &Theta;(log <i>n</i>)</div>
-    </div>
-
-    <script>
-      slideAnims.mapSize = keyFrameList([
-       {"#mapSize > div.popup" : {opacity: 0}},
-       {"#mapSize > div.popup" : {opacity: 1}}
-      ]);
-    </script>
-    <style>
-      #mapSize > div.popup {
-        position: absolute;
-        font-family: serif;
-        font-size: 70%;
-        border: 2px solid #008;
-        background-color: #DDF;
-        padding: .5%;
-      }
-    </style>
-    <div class="slide" id="mapSize">
-      <img src="images/mapSize3.svg" height="90%" style="position: absolute; top: 0%; left: 5%"/>
-      <div class="popup" style="left: 84%; top: 17%">~ &Theta;(<i>n</i>)</div>
-      <div class="popup" style="left: 84%; top: 60%">~ &Theta;(log<sup>2</sup> <i>n</i>)</div>
-    </div>
-
-    <div class="slide">
-      <h1>Runtime: Secure Computation</h1>
-      <div style="position: absolute; background-color: white; top: 40%; border: 2px solid #040; left: 5%; width:27%; font-size: 80%;padding-left:3%; padding-top: 3%; padding-bottom: 3%"><pre>
-for (i=0; i&lt;n; i++)
-      C[A[i] + B[i]]++;</pre></div>
-      <img width="55%" style="position: absolute; top: 22%; right: 7%" src="images/aggregate2.svg"/>
-    </div>
-
-    <div class="slide">
-      <h1>Runtime: Static Analysis</h1>
-      <div style="position: absolute; background-color: white; top: 30%; border: 2px solid #040; left: 5%; width: 27%; height: 40%; font-size: 65%; padding-left:3%; padding-top: 3%"><pre>
-arr1 = &lt;Array size n&gt;
-arr2 = &lt;Array size n&gt;
-j = k = 0;
-for (i=0; i&lt;2*n; i++)
-    if (arr1[j] &lt; arr2[k]) 
-        res[i] = arr1[j++];
-    else res[i] = arr2[k++];
-      </pre></div>
-      <img style="position: absolute; top: 22%; right: 7%; width: 55%" src="images/statictime2.svg"/>
-    </div>
-
-    <div class="slide" style="padding: 0 5%">
-      <h1>Conclusion</h1>
-      <object style="width: 86%; left: 7%; top: 20%; position: absolute" type="image/svg+xml" data="images/conclusion.svg"></object>
-    </div>
-    <div class="slide hideSlideNumber">
-      <h1 style="margin-bottom: 10%">Thank you</h1>
-      <div style="margin-left: 5%; text-align: center">
-        <p style="color:#902f00; padding-top: 2em">www.MightBeEvil.org</p>
-        <p style="width:100%; margin-top: 0; margin-left: 5%">
-        Samee Zahur &lt;<span style="color:#902f00">samee@virginia.edu</span>&gt; <br/>
-        David Evans &lt;<span style="color:#902f00">evans@virginia.edu</span>&gt;
-        </p>
+    <div id="myAnimSlide">
+      <h1>Need animations?</h1>
+      <div>
+        <img src="images/smiley.png" alt="smiley"/><br/>
+        We can do those too! <br/>
+        More info on animations <a href="animation.html">here</a>.
       </div>
+    </div>
+
+    <style>
+    #goodbye > p { padding-top: 5em; text-align: center }
+    </style>
+    <div id="goodbye">
+      <p>More features coming soon!</p>
     </div>
   </div>
   </body>
