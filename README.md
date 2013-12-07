@@ -2,23 +2,27 @@ HackSlider
 ==========
 
 This was written as I was getting frustrated with using existing opensource
-presentation software.  Biggest problem would be the fact LibreOffice and
-others are not quite popular yet, so the presentation PC will often lack the
-software I need. Or, if I'm lucky, they will be installed but have a different
-version that completely butchers my slides. It felt like there should be a
-better solution to this.  In fact, it should be easy to write up my own
-solution that works well for me, even if it means I would to write my slides
-directly in HTML. When I show it to other people, I don't need them to install
-yet another bloated software. If you are good with Javascript, you can have all
-kinds of fancy animations you can think of, including things that you don't get
+presentation software.  Biggest problem was that LibreOffice and
+others are not quite popular yet, so the presentation PC often did not have the
+software I chose for making my slides. Or, if I was lucky, they were installed
+but had a different version that completely butchered my slides. I felt like
+there should be a
+better solution to this. It should be easy to write my own
+solution that works well for me, even if it means I have write my slides
+directly in HTML. When I demo the slides to other people, I don't need them to install
+yet another bloated software: a browser is enough. This has some other upsides too if you are good with
+Javascript: you can have all kinds of fancy animations you can think of,
+including things that you don't get
 in everyday presentation software. You can keep tracking changes to your
 presentation using a version control system like Git. Finally, you can automate
 things: use CSS to automate complicated formatting rules, have your slide
 elements resize and reposition correctly when you change screen resolution,
-embed a live website right inside your slides, etc.
+embed a live website right inside your slides, etc. I mean, think about it:
+this is exactly what professional designers use to make all your favorite websites.
+So it can't be *that* bad to write slides in HTML!
 
-Having made this, I realized that the user needs only basic HTML/CSS to get
-started, which means anyone who has ever designed a web page may find it useful
+Having made this, I realized that the user needs only basic HTML/CSS understanding to get
+started. This means anyone who has ever designed a web page may find it useful
 as well. So give it a try! 
 
  1. You can try the current version from 
