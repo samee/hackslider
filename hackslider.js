@@ -60,6 +60,7 @@ $(document).ready(function() {
 
   // Keyboard navigation
   $(document).keydown(function(event){
+    if(event.shiftKey || event.ctrlKey || event.altKey) return;
     var anim = getIfAnim(currentPosition);
     if(event.keyCode == 40 || event.keyCode == 34) {
       if(anim && !anim.atLastFrame()) anim.move(+1);
