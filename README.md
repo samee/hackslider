@@ -8,7 +8,8 @@ way includes: not requiring installation of anything but a browser, you can keep
 tracking changes in version control like Git, you can automate things like
 having complicated formatting rules etc. I mean, think about it: all your
 favorite websites are professionally made by people directly writing HTML, so it
-can't be *that* bad to write slides this way!
+can't be *that* bad to write slides this way! See the live 
+[demo right here in your browser](http://samee.github.io/hackslider/)!
 
 Only basic HTML/CSS understanding is needed to get started. This means anyone
 who has ever designed a web page may find it useful as well. So give it a try! 
