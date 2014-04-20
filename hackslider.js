@@ -70,6 +70,7 @@ $(document).ready(function() {
       //else 
         changeSlide(currentPosition-1);
     });
+  if(self!=top) parent.slidesLoaded(currentPosition,slides().length);
 });
 
 // ---------------------- Begin animation stuff -------------------------------

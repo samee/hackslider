@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head><title>Handouts</title></head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <style>
+  .slide { width:4.8in; height:2.7in; margin:5mm; }
+  </style>
+  <script type="text/javascript">
+  function parseParams(s) {
+    var rv = {};
+    var entry = function(pair) {
+      var a = pair.split('=');
+      if(a.length!=2) throw "parseParams() was expecting a key-value pair: '"+pair+"' is not";
+      rv[a[0]]=a[1];
+    };
+    s.split('&').forEach(entry);
+    return rv;
+  }
+  function slidesLoaded(currentSlide,slideCount) {
+    if(currentSlide!=0) return;
+    for(var i=1;i<slideCount;++i)
+    {
+      var fr = document.createElement("iframe");
+      fr.className = "slide";
+      document.body.appendChild(fr);
+      fr.contentWindow.location = "index.html#"+i;
+    }
+  }
+  </script>
+<body>
+<iframe src="index.html#0" class="slide"></iframe>
+</body>
+</html>
