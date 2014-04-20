@@ -2,8 +2,10 @@ var currentPosition = -1;
 var currentSlide;
 var slideAnims = {};
 
+function slides() { return $("#slideshow > div"); }
+
 function slideId(slide) { 
-  return $("#slideshow > div").eq(slide).attr('id'); 
+  return slides().eq(slide).attr('id'); 
 }
 function getIfAnim(slide) {
   if(isAnim(slide)) return slideAnims[slideId(slide)];
@@ -13,8 +15,7 @@ function isAnim(slide) {
   return slideAnims.hasOwnProperty(slideId(slide));
 }
 function changeSlide(slide) {
-  var arr = $("#slideshow > div");
-  var n = arr.length;
+  var n = slides().length;
   if(slide<0 || slide>=n || slide == currentPosition) return;
   var anim = getIfAnim(slide);
   if(anim) {
@@ -23,7 +24,7 @@ function changeSlide(slide) {
   }
   currentPosition = slide;
   window.location.hash="#"+currentPosition;
-  arr.each(function(k,v) {
+  slides().each(function(k,v) {
     if(k==slide) {
       $(this).show(); 
       currentSlide = $(this);
@@ -41,8 +42,7 @@ function resizeAll() {
 }
 $(document).ready(function() {
   // Write out slide numbers
-  var slides = $("#slideshow > div");
-  $("#slideshow > div").append(function(i) {
+  slides().append(function(i) {
     if($(this).hasClass("hideSlideNumber")) return "";
     else return "<div class='slideNumber'>"+i+"</div>";
   });
